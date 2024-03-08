@@ -17,7 +17,7 @@ class transfertController extends Controller
         $somme_transaction = DB::table('transactions')->sum('montant');
         $liste_transaction = Transaction::orderBydesc('id')->get();
         return view('administration.pages.transaction.index', compact('liste_transaction','somme_transaction'));
-    }
+    }  
 
     //Affichage du formulaire de creation du depot avec generation d'un code unique
     public function create()
