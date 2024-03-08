@@ -4,21 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
-class depot extends Model
+
+class Transaction extends Model
 {
     use HasFactory;
     protected $fillable = [
         'id',
         'nom_emetteur',
-        'inom_recepteurd',
+        'nom_recepteur',
         'matricule',
         'telephone',
-        'bl_no',
+        'pays_provenance',
+        'pays_destination',
         'montant',
-        'date_depot',
         'motif',
-        'somme',
         'users_id'
     ];
+
+    public function users_id(){
+        return $this->belongsTo(User::class,'users_id');
+    }
 }

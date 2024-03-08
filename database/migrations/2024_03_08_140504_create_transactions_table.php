@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('depots', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->id();
             $table->string('nom_emetteur');
             $table->string('nom_recepteur');
             $table->string('matricule');
             $table->integer('telephone');
-            $table->string('bl_no');
+            $table->string('pays_provenance');
+            $table->string('pays_destination');
             $table->integer('montant');
-            $table->date('date_depot');
             $table->text('motif');
-            $table->string('somme');
-            $table->unsignedInteger('users_id');
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->integer('users_id');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('depots');
+        Schema::dropIfExists('transactions');
     }
 };
