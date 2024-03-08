@@ -1,5 +1,11 @@
 @extends('administration.layouts-admin.entete-admin')
 @section('content')
+<!--git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jnthnkabongo/alphrina_transfert.git
+git push -u origin main-->
     <main class="mb-5">
         <div class="container-fluid px-4">
             <div class="row">
