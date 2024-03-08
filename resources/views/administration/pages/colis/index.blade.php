@@ -114,7 +114,7 @@
                                                 </div>
                                             </form>
 
-                                        </div><!--//col-->
+                                        </div>
                                         <div class="col-auto">
 
                                             <select class="form-select w-auto" >
@@ -136,8 +136,8 @@
                                         </div>
                                     </div><!--//row-->
                                 </div><!--//table-utilities-->
-                            </div><!--//col-auto-->
-                        </div><!--//row-->
+                            </div>
+                        </div>
 
 
                         <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4" >
@@ -223,10 +223,10 @@
 
                                                 </tbody>
                                             </table>
-                                        </div><!--//table-responsive-->
+                                        </div>
 
-                                    </div><!--//app-card-body-->
-                                </div><!--//app-card-->
+                                    </div>
+                                </div>
                                 <nav class="app-pagination">
                                     <ul class="pagination justify-content-center">
                                         <li class="page-item disabled">
@@ -239,9 +239,9 @@
                                             <a class="page-link" href="#">Next</a>
                                         </li>
                                     </ul>
-                                </nav><!--//app-pagination-->
+                                </nav>
 
-                            </div><!--//tab-pane-->
+                            </div>
 
                             <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
                                 <div class="app-card app-card-orders-table mb-5">
@@ -313,7 +313,7 @@
 
 
                     </div><!--//container-fluid-->
-                </div><!--//app-content-->
+                </div>
             </div>
 
         </div>
