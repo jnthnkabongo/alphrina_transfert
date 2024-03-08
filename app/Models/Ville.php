@@ -16,6 +16,6 @@ class Ville extends Model
     ];
 
     public function id_pays(){
-        return $this->belongsTo(User::class,'id_pays');
+        return $this->belongsTo(Pays::class,'id_pays');
     }
 }
