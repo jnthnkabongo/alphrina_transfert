@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\saveDepot;
 use App\Models\depot;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -13,8 +14,8 @@ class transfertController extends Controller
     //Affichage de la liste des transactions depot
     public function index()
     {
-        $somme_transaction = DB::table('depots')->sum('montant');
-        $liste_transaction = depot::orderBydesc('id')->get();
+        $somme_transaction = DB::table('transactions')->sum('montant');
+        $liste_transaction = Transaction::orderBydesc('id')->get();
         return view('administration.pages.transaction.index', compact('liste_transaction','somme_transaction'));
     }
 
@@ -25,7 +26,7 @@ class transfertController extends Controller
         return view('administration.pages.transaction.creation', compact('generation_matricule'));
     }
     // Spumission du formulaire e creation et creation d'un depot
-    public function show(depot $Depot, saveDepot $request)
+    public function show(Transaction $Depot, saveDepot $request)
     {
         try {
             $Depot->matricule = $request->matricule;
@@ -45,17 +46,17 @@ class transfertController extends Controller
         }
     }
     //Affichage du formulaire de visualisation des informations du depot
-    public function store(depot $itemtrasaction)
+    public function store(Transaction $itemtrasaction)
     {
         return view('administration.pages.transaction.visualisation', compact('itemtrasaction'));
     }
     // Affichage du formulaire de modification avant modification
-    public function edit(depot $itemtrasaction)
+    public function edit(Transaction $itemtrasaction)
     {
         return view('administration.pages.transaction.modifier', compact('itemtrasaction'));
     }
     // La soumission du formulaire de modification
-    public function update(Request $request,depot $itemtrasaction)
+    public function update(Request $request,Transaction $itemtrasaction)
     {
         try {
             $itemtrasaction->nom_emetteur = $request->nom_emetteur;
@@ -76,7 +77,7 @@ class transfertController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(depot $itemtrasaction)
+    public function destroy(Transaction $itemtrasaction)
     {
         try {
             $itemtrasaction->delete();

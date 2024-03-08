@@ -30,8 +30,7 @@ class authController extends Controller
     public function create(creentials $request)
     {
         $credentials = $request->validated();
-        if (Auth::attempt($credentials))
-        {
+        if (Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended(route('redirect'))->with('message','Bienvenu(e) dans notre application');
         }
