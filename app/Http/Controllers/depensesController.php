@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\DB;
 
 class depensesController extends Controller
 {
@@ -11,7 +13,9 @@ class depensesController extends Controller
      */
     public function index()
     {
-        return view('administration.pages.depenses.index');
+        $somme_transaction = Transaction::sum('montant');
+        $liste_transaction = Transaction::where('etat', '=', '0')->orderBydesc('id')->paginate(10);
+        return view('administration.pages.depenses.index', compact('liste_transaction','somme_transaction'));
     }
 
     /**
@@ -27,7 +31,8 @@ class depensesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('administration.pages.depenses.creation');
+
     }
 
     /**

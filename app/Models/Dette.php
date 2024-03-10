@@ -24,4 +24,6 @@ class Dette extends Model
     public function id_transaction(){
         return $this->belongsTo(User::class,'id_transaction');
     }
+
+   
 }

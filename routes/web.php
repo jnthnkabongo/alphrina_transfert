@@ -43,6 +43,10 @@ Route::middleware(['connexion'])->group(function () {
 
     // Les routes de la partie depenses
     Route::get('liste-depenses', [depensesController::class, 'index'])->name('index-depenses');
+    Route::get('creation-depenses', [depensesController::class, 'store'])->name('creation-depenses');
+//    Route::get('liste-depenses', [depensesController::class, 'index'])->name('index-depenses');
+//    Route::get('liste-depenses', [depensesController::class, 'index'])->name('index-depenses');
+//    Route::get('liste-depenses', [depensesController::class, 'index'])->name('index-depenses');
 
     // Les routes de la partie conteneur
     Route::get('index-conteneur', [conteneurController::class, 'index'])->name('index-conteneur');

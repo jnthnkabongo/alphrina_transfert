@@ -14,8 +14,8 @@ class transfertController extends Controller
     //Affichage de la liste des transactions depot
     public function index()
     {
-        $somme_transaction = DB::table('transactions')->sum('montant');
-        $liste_transaction = Transaction::orderBydesc('id')->get();
+        $somme_transaction = Transaction::sum('montant');
+        $liste_transaction = Transaction::where('etat', '=', '1')->orderBydesc('id')->paginate(10);
         return view('administration.pages.transaction.index', compact('liste_transaction','somme_transaction'));
     }
 

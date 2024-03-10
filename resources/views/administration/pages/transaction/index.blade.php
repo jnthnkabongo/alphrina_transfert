@@ -91,7 +91,7 @@
                                                     <tbody>
                                                         @forelse ($liste_transaction as $itemtrasaction)
                                                         <tr>
-                                                            <td>{{ $itemtrasaction->id }}</td>
+                                                            <td class="cell">{{ ($liste_transaction->perPage() * ($liste_transaction->currentPage() - 1 ))+ $loop->iteration }}</td>
                                                             <td>{{ Str::upper($itemtrasaction->matricule) }}</td>
                                                             <td>{{ $itemtrasaction->nom_emetteur }}</td>
                                                             <td>{{ $itemtrasaction->nom_recepteur }}</td>

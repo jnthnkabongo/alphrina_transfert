@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('pays_provenance');
             $table->string('pays_destination');
             $table->integer('montant');
+            $table->integer('etat');
             $table->text('motif');
             $table->integer('users_id');
             $table->timestamps();

@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'roles_id'
+        'roles_id',
+        'residence'
     ];
 
     /**
@@ -52,5 +53,15 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsTo(roles::class);
+    }
+
+    /**
+     * Get the user that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function pays()
+    {
+        return $this->belongsTo(Pays::class, 'foreign_key', 'other_key');
     }
 }
