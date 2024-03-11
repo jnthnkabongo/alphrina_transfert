@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\saveDepot;
 use App\Models\depot;
+use App\Models\Pays;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class transfertController extends Controller
     {
         $somme_transaction = Transaction::sum('montant');
         $liste_transaction = Transaction::where('etat', '=', '1')->orderBydesc('id')->paginate(10);
+        $pays_liste = Pays::all();
         return view('administration.pages.transaction.index', compact('liste_transaction','somme_transaction'));
     }
 
