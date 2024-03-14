@@ -22,29 +22,35 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header "><h3 class="text-center font-weight-light my-4">Connexion</h3></div>
                                     <div class="card-body">
-                                        <form action="{{ route('soumission') }}" method="POST">
+
+                                        <form class="p-4 p-md-5  bg-body-tertiary" action="{{ route('soumission') }}" method="POST">
                                             @csrf
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="email" name="email" type="email" value="{{ old('email') }}"/>
-                                                <label for="inputEmail">Adresse E-mail</label>
-                                                <div class="text-danger">
-                                                    @error("email")
-                                                        {{ $message }}
-                                                    @enderror
-                                                </div>
+                                              <input type="email" class="form-control" id="email" name="email" placeholder="Jael@example.com" value="{{ old('email') }}">
+                                              <label for="floatingInput">Addresse E-mail</label>
+                                              <div class="text-danger">
+                                                @error("email")
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="password" name="password" type="password" placeholder="Password"/>
-                                                <label for="inputPassword">Mot de passe</label>
-                                                <div class="text-danger">
-                                                    @error("password")
-                                                        {{ $message }}
-                                                    @enderror
-                                                </div>
+                                              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                              <label for="floatingPassword">Password</label>
+                                              <div class="text-danger">
+                                                @error("password")
+                                                    {{ $message }}
+                                                @enderror
                                             </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <button class="btn btn-primary w-100" href="">Se connecter</button>
                                             </div>
+                                            <div class="checkbox mb-3">
+                                              <label>
+                                                <input type="checkbox" value="remember-me"> Se souvenir de moi
+                                              </label>
+                                            </div>
+                                            <button class="w-100 btn btn-lg btn-primary " type="submit">Se connecter</button>
+                                            <hr class="my-4">
+                                            <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
                                         </form>
                                         @if(Session::has('message'))
                                             <script>
@@ -56,9 +62,7 @@
                                             </script>
                                         @endif
                                     </div>
-                                    <div class="card-footer bg-light text-center pt-5 py-3">
-                                        <div></div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
