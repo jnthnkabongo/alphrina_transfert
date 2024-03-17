@@ -16,7 +16,7 @@ class transfertController extends Controller
     public function index()
     {
         $somme_transaction = Transaction::sum('montant');
-        $liste_transaction = Transaction::where('etat', '=', '1')->orderBydesc('id')->paginate(10);
+        $liste_transaction = Transaction::where('etat', '=', '0')->orderBydesc('id')->paginate(10);
         $pays_liste = Pays::all();
         return view('administration.pages.transaction.index', compact('liste_transaction','somme_transaction'));
     }
@@ -24,7 +24,7 @@ class transfertController extends Controller
     //Affichage du formulaire de creation du depot avec generation d'un code unique
     public function create()
     {
-        $generation_matricule = Str::random(7);
+        $generation_matricule = 'ABG-'. Str::random(7);
         return view('administration.pages.transaction.creation', compact('generation_matricule'));
     }
     // Spumission du formulaire e creation et creation d'un depot

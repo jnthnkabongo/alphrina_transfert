@@ -9,6 +9,8 @@ class Pays extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id_pa',
         'intitule',
     ];
+
 }

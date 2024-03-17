@@ -15,7 +15,7 @@ class Ville extends Model
         'intitule',
     ];
 
-    public function id_pays(){
-        return $this->belongsTo(Pays::class,'id_pays');
+    public function PaysVille(){
+        return $this->belongsTo(Pays::class,'id_pays', 'id');
     }
 }

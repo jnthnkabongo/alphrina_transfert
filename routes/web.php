@@ -42,9 +42,10 @@ Route::middleware(['connexion'])->group(function () {
     Route::get('suppression-transaction-{itemtrasaction}', [transfertController::class, 'destroy'])->name('suppression-transaction');
 
     // Les routes de la partie depenses
-    Route::get('liste-depenses', [depensesController::class, 'index'])->name('index-depenses');
-    Route::get('creation-depenses', [depensesController::class, 'store'])->name('creation-depenses');
-//    Route::get('liste-depenses', [depensesController::class, 'index'])->name('index-depenses');
+    Route::get('liste-retrait', [depensesController::class, 'index'])->name('index-depenses');
+    Route::get('creation-retrait-{itemtrasaction}', [depensesController::class, 'store'])->name('creation-retrait');
+    Route::get('creations-retrait-{itemtrasaction}', [depensesController::class, 'create'])->name('creations-retrait');
+    Route::get('visualisation-retrait-{itemtrasaction}', [depensesController::class, 'create'])->name('visualisation-retrait');
 //    Route::get('liste-depenses', [depensesController::class, 'index'])->name('index-depenses');
 //    Route::get('liste-depenses', [depensesController::class, 'index'])->name('index-depenses');
 

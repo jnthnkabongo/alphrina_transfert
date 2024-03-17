@@ -32,8 +32,30 @@ class Transaction extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function ville()
+    public function Ville()
     {
-        return $this->belongsTo(Ville::class, 'foreign_key', 'other_key');
+        return $this->belongsTo(Ville::class, 'id_pays', 'id');
     }
+
+
+    /**
+     * Get the pays that owns the Pays
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function PaysProvenance()
+    {
+        return $this->belongsTo(Pays::class, 'pays_provenance','id');
+    }
+    /**
+     * Get the pays that owns the Pays
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function PaysDestination()
+    {
+        return $this->belongsTo(Pays::class, 'pays_destination','id');
+    }
+
+
 }

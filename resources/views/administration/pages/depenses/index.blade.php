@@ -13,9 +13,31 @@
 
                 </div>
                 <div class="col-lg-2 col-md-2 mt-5">
-                    <a href="{{ route('creation-depenses') }}" class="btn btn-primary w-100"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp; Nouveau</a>
                 </div>
                 <hr class="mb-4">
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="card bg-success text-white mb-4">
+                        <div class="card-footer d-flex align-items-center text-center">
+                            <h1>Somme : {{ $somme_transaction }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-danger text-white mb-4">
+                        <div class="card-footer d-flex align-items-center text-center">
+                            <h1>Dette : {{ $somme_transaction }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-warning text-white mb-4">
+                        <div class="card-footer d-flex align-items-center text-center">
+                            <h1>Balance : {{ $somme_transaction }}</h1>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="card mb-4">
                 <div class="card-header">
@@ -81,7 +103,8 @@
                                                             <th>Nom Emetteur</th>
                                                             <th>Nom Récepteur</th>
                                                             <th>Téléphone</th>
-                                                            <th>Dette</th>
+                                                            <th>Pays Provenance</th>
+                                                            <th>Pays Provenance</th>
                                                             <th>Montant</th>
                                                             <th>Date </th>
                                                             <th>Motif</th>
@@ -91,19 +114,20 @@
                                                     <tbody>
                                                         @forelse ($liste_transaction as $itemtrasaction)
                                                         <tr>
-                                                            <td class="cell">{{ ($liste_transaction->perPage() * ($liste_transaction->currentPage() - 1 ))+ $loop->iteration }}</td>
+                                                            <td class="cell">{{ ($tous_retraits->perPage() * ($tous_retraits->currentPage() - 1 ))+ $loop->iteration }}</td>
                                                             <td>{{ Str::upper($itemtrasaction->matricule) }}</td>
                                                             <td>{{ $itemtrasaction->nom_emetteur }}</td>
                                                             <td>{{ $itemtrasaction->nom_recepteur }}</td>
                                                             <td>{{ $itemtrasaction->telephone }}</td>
-                                                            <th>{{ Str::upper($itemtrasaction->bl_no) }}</th>
+                                                            <th><span class="badge bg-success">{{ Str::upper($itemtrasaction->PaysProvenance->intitule) }}</span></th>
+                                                            <th><span class="badge bg-danger">{{ Str::upper($itemtrasaction->PaysDestination->intitule) }}</span></th>
                                                             <th>{{ $itemtrasaction->montant }}</th>
                                                             <td>{{ Carbon\Carbon::parse($itemtrasaction->created_at)->format('d/m/y') }}</td>
                                                             <td>{{ $itemtrasaction->motif }}</td>
-                                                            <td>
-                                                                <a class="text-dark" href="{{ route('visualisation-transaction', $itemtrasaction) }}"><i class="fas fa-eye me-1" i></i></a>
-                                                                <a class="text-dark" href="{{ route('modifier-transaction', $itemtrasaction) }}"><i class="fas fa-pencil me-1"></i></a>
-                                                                <a class="text-dark" href="{{ route('suppression-transaction', $itemtrasaction) }}"><i class="fas fa-trash me-1"></i></a>
+                                                            <td class="text-center">
+                                                                <a class="btn btn-sm btn-outline-secondary text-dark" href="{{ route('creation-retrait', $itemtrasaction) }}"><i class="fas fa-eye me-1" i></i></a>
+                                                                <a class="btn btn-sm btn-outline-secondary text-dark" href="{{ route('modifier-transaction', $itemtrasaction) }}"><i class="fas fa-pencil me-1"></i></a>
+                                                                <a class="btn btn-sm btn-outline-secondary text-dark" href="{{ route('suppression-transaction', $itemtrasaction) }}"><i class="fas fa-trash me-1"></i></a>
 
                                                             </td>
                                                         </tr>
@@ -142,15 +166,19 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @forelse ($tous_retraits as $retrait_non_effectuer)
                                                         <tr>
-                                                            <td class="cell">#15346</td>
-                                                            <td class="cell"><span class="truncate">Lorem ipsum dolor sit amet eget volutpat erat</span></td>
+                                                            <td class="cell">{{ ($tous_retraits->perPage() * ($tous_retraits->currentPage() - 1 ))+ $loop->iteration }}</td>
+                                                            <td class="cell"><span class="truncate">{{ $retrait_non_effectuer->nom_emetteur }}</span></td>
                                                             <td class="cell">John Sanders</td>
                                                             <td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
                                                             <td class="cell"><span class="badge bg-success">Paid</span></td>
                                                             <td class="cell">$259.35</td>
                                                             <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
                                                         </tr>
+                                                        @empty
+
+                                                        @endforelse
                                                     </tbody>
                                                 </table>
 
@@ -165,13 +193,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
+                <!--<div class="card-footer">
                     <div class="row">
-                        <div class="col-lg-4 text-center"> <h5> Somme : <span class="badge bg-success">0</span></h5></div>
+                        <div class="col-lg-4 text-center"> <h5> Somme : <span class="badge bg-success">{{ $somme_transaction }}</span></h5></div>
                         <div class="col-lg-4 text-center"> <h5> Dette : <span class="badge bg-danger">0</span></h5></div>
                         <div class="col-lg-4 text-center"> <h5> Balance : <span class="badge bg-warning">0</span></h5></div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
 
