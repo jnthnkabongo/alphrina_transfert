@@ -26,11 +26,11 @@ class saveDepot extends FormRequest
             'nom_emetteur' => 'required',
             'nom_recepteur' => 'required',
             'telephone' => 'required',
-            'bl_no' => 'required',
+            'pays_provenance' => 'required',
+            'pays_destination' => 'required',
             'montant' => 'required',
-            'date_depot' => 'required',
             'motif' => 'required',
-            'somme' => 'required'
+
         ];
     }
 }

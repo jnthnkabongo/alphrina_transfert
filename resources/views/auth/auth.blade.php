@@ -17,12 +17,13 @@
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
-                        <div class="row justify-content-center mt-5">
-                            <div class="col-lg-5 mt-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header "><h3 class="text-center font-weight-light my-4">Connexion</h3></div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5 mb-5">
+                                    <div class="card"  style="">
+                                        <img class="card-img-top" src="{{ asset('assets/img/images(1).png') }}" height="120px" alt="">
+                                    </div>
                                     <div class="card-body">
-
                                         <form class="p-4 p-md-5  bg-body-tertiary" action="{{ route('soumission') }}" method="POST">
                                             @csrf
                                             <div class="form-floating mb-3">
@@ -42,15 +43,8 @@
                                                     {{ $message }}
                                                 @enderror
                                             </div>
-                                            </div>
-                                            <div class="checkbox mb-3">
-                                              <label>
-                                                <input type="checkbox" value="remember-me"> Se souvenir de moi
-                                              </label>
-                                            </div>
                                             <button class="w-100 btn btn-lg btn-primary " type="submit">Se connecter</button>
                                             <hr class="my-4">
-                                            <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
                                         </form>
                                         @if(Session::has('message'))
                                             <script>

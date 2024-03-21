@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\saveDepot;
-use App\Models\depot;
+use App\Http\Requests\saveDette;
+use App\Models\Dette;
 use App\Models\Pays;
 use App\Models\Transaction;
-use Illuminate\Support\Facades\DB;
+use App\Models\Typedette;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -25,12 +26,23 @@ class transfertController extends Controller
     public function create()
     {
         $generation_matricule = 'ABG-'. Str::random(7);
-        return view('administration.pages.transaction.creation', compact('generation_matricule'));
+        $liste_type_dette = Typedette::all();
+        $liste_pays = Pays::all();
+        return view('administration.pages.transaction.creation', compact('generation_matricule','liste_type_dette','liste_pays'));
     }
-    // Spumission du formulaire e creation et creation d'un depot
-    public function show(Transaction $Depot, saveDepot $request)
+    // Soumission du formulaire e creation et creation d'un depot
+    public function show(saveDepot $request, saveDette $requestDette)
     {
-        try {
+        if ($requestDette->isEmpty()) {
+            $validation = Transaction::create($request->validated());
+            return redirect()->route('index-transaction')->with('message', 'La creation reussi...');
+        }else {
+            $validation = Transaction::create($request->validated());
+            $validationDette = Dette::create($requestDette->validated());
+            return redirect()->route('index-transaction')->with('message', 'La creation reussi...');
+
+        }
+       /* try {
             $Depot->matricule = $request->matricule;
             $Depot->nom_emetteur = $request->nom_emetteur;
             $Depot->nom_recepteur = $request->nom_recepteur;
@@ -45,7 +57,7 @@ class transfertController extends Controller
             return to_route('index-transaction')->with('message', 'La création du depot a ete creer avec success...');
         } catch (\Throwable $e) {
             dd($e);
-        }
+        }*/
     }
     //Affichage du formulaire de visualisation des informations du depot
     public function store(Transaction $itemtrasaction)

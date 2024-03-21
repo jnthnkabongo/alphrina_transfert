@@ -25,15 +25,20 @@
                         <div class="card-body">
                             <form class="row g-3" action="{{ route('creation-transactions') }}" method="POST">
                                @csrf
-                                <!--<div class="col-md-6">
-                                <label class="form-label">Numéro Réçu</label>
-                                <input type="text" class="form-control" id="numero_recu" name="numero_recu" >
-                                </div>-->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label class="form-label">Matricule</label>
                                     <input type="text" class="form-control" id="matricule" name="matricule" value="{{ $generation_matricule }}" readonly>
                                     <div class="text-danger">
                                         @error("matricule")
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Téléphone</label>
+                                    <input type="number" class="form-control" id="telephone" name="telephone">
+                                    <div class="text-danger">
+                                        @error("telephone")
                                             {{ $message }}
                                         @enderror
                                     </div>
@@ -57,19 +62,29 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Téléphone</label>
-                                    <input type="number" class="form-control" id="telephone" name="telephone">
+                                    <label  class="form-label">Pays Provenance</label>
+                                    <select class="form-control" name="pays_provenance" id="pays_provenance">
+                                        <option value="">-- Sélectionner un pays --</option>
+                                        @foreach ($liste_pays as $item_liste_pays)
+                                            <option value="{{ $item_liste_pays->id }}">{{ Str::upper($item_liste_pays->intitule) }}</option>
+                                        @endforeach
+                                    </select>
                                     <div class="text-danger">
-                                        @error("telephone")
+                                        @error("pays_provenance")
                                             {{ $message }}
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label  class="form-label">BL NO</label>
-                                    <input type="text" class="form-control" id="bl_no" name="bl_no" value="{{ $generation_matricule }}" readonly>
+                                    <label  class="form-label">Pays Destination</label>
+                                    <select class="form-control" name="pays_destination" id="pays_destination">
+                                        <option value="">-- Sélectionner un pays --</option>
+                                        @foreach ($liste_pays as $item_liste_pays)
+                                            <option value="{{ $item_liste_pays->id }}">{{ Str::upper($item_liste_pays->intitule) }}</option>
+                                        @endforeach
+                                    </select>
                                     <div class="text-danger">
-                                        @error("bl_no")
+                                        @error("pays_destination")
                                             {{ $message }}
                                         @enderror
                                     </div>
@@ -83,15 +98,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label  class="form-label">Date du jour</label>
-                                    <input type="date" class="form-control" id="date_depot" name="date_depot">
-                                    <div class="text-danger">
-                                        @error("date_depot")
-                                            {{ $message }}
-                                        @enderror
-                                    </div>
-                                </div>
                                 <div class="col-6">
                                     <label for="inputAddress" class="form-label">Motif</label>
                                     <input type="text" class="form-control" id="motif" name="motif">
@@ -101,13 +107,37 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="" class="form-label">Somme en chiffres</label>
-                                    <input type="text" class="form-control" id="somme" name="somme">
-                                    <div class="text-danger">
-                                        @error("somme")
-                                            {{ $message }}
-                                        @enderror
+                                <div class="col-md-12">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Dette</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 dette" id="detteField" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="" class="form-label">Montant Verser</label>
+                                            <input type="number" class="form-control" id="montantdette" name="montantdette">
+                                            <div class="text-danger">
+                                                @error("montantdette")
+                                                {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="" class="form-label">Mode de Paiement</label>
+                                            <select class="form-control" id="etat" name="etat">
+                                                <option value="">-- Sélectionnez un mode ---</option>
+                                                @foreach ($liste_type_dette as $item_type_dette)
+                                                    <option value="{{ $item_type_dette->id }}">{{ Str::upper($item_type_dette->intitule) }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="text-danger">
+                                                @error("etat")
+                                                {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -135,4 +165,16 @@
             </div>
         </div>
     </main>
+    <script>
+        var checkbox = document.getElementById('flexSwitchCheckDefault');
+        var detteField = document.getElementById('detteField');
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                detteField.style.display = 'block';
+            } else {
+                detteField.style.display = 'none';
+            }
+        });
+    </script>
 @endsection

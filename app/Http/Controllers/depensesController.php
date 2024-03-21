@@ -14,7 +14,7 @@ class depensesController extends Controller
     public function index()
     {
         $somme_transaction = Transaction::sum('montant');
-        $tous_retraits = Transaction::latest()->paginate(10);
+        $tous_retraits = Transaction::where('etat', '=', '1')->latest()->paginate(10);
         $liste_transaction = Transaction::where('etat', '=', '0')->orderBydesc('id')->paginate(10);
         return view('administration.pages.depenses.index', compact('liste_transaction','somme_transaction','tous_retraits'));
     }
