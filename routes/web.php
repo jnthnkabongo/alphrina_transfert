@@ -35,7 +35,7 @@ Route::middleware(['connexion'])->group(function () {
 
     Route::get('liste-transaction', [transfertController::class, 'index'])->name('index-transaction');
     Route::get('creation-transaction', [transfertController::class, 'create'])->name('creation-transaction');
-    Route::post('creation-transaction', [transfertController::class, 'show'])->name('creation-transactions');
+    Route::post('creation-transactions', [transfertController::class, 'showing'])->name('creation-transactions');
     Route::get('visualisation-transaction-{itemtrasaction}', [transfertController::class, 'store'])->name('visualisation-transaction');
     Route::get('modifier-transaction-{itemtrasaction}', [transfertController::class, 'edit'])->name('modifier-transaction');
     Route::get('modifier-transactions-{itemtrasaction}', [transfertController::class, 'update'])->name('modifier-transactions');

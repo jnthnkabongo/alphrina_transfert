@@ -32,13 +32,25 @@ class transfertController extends Controller
         return view('administration.pages.transaction.creation', compact('generation_matricule','liste_type_dette','liste_pays'));
     }
     public function soumission(Transaction $Depot){
-       
+
     }
     // Soumission du formulaire e creation et creation d'un depot
-    public function show(saveDepot $request, saveDette $requestDette)
+    public function showing(Transaction $Depot, saveDepot $request,saveDette $requestDette)
     {
-
-        if ($requestDette->input('montantdette') === null && $requestDette->input('etat')) {
+        try {
+            $Depot->matricule = $request->matricule;
+            $Depot->nom_emetteur = $request->nom_emetteur;
+            $Depot->nom_recepteur = $request->nom_recepteur;
+            $Depot->telephone = $request->telephone;
+            $Depot->pays_provenance = $request->pays_provenance;
+            $Depot->pays_destination = $request->pays_destination;
+            $Depot->montant = $request->montant;
+            $Depot->motif = $request->motif;
+            $Depot->save();
+        } catch (\Throwable $e) {
+            throw $e;
+        }
+        /*if ($requestDette->input('montantdette') === null && $requestDette->input('etat')) {
             $validation = Transaction::create($request->validated());
             dd($validation);
             return redirect()->route('index-transaction')->with('message', 'La creation reussi...');

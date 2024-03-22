@@ -107,39 +107,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">Dette</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 dette" id="detteField" style="display: none;">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="" class="form-label">Montant Verser</label>
-                                            <input type="number" class="form-control" id="montantdette" name="montantdette">
-                                            <div class="text-danger">
-                                                @error("montantdette")
-                                                {{ $message }}
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="" class="form-label">Mode de Paiement</label>
-                                            <select class="form-control" id="etat" name="etat">
-                                                <option value="">-- Sélectionnez un mode ---</option>
-                                                @foreach ($liste_type_dette as $item_type_dette)
-                                                    <option value="{{ $item_type_dette->id }}">{{ Str::upper($item_type_dette->intitule) }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="text-danger">
-                                                @error("etat")
-                                                {{ $message }}
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-6">
                                     <input type="text" id="users_id" name="users_id" hidden>
                                 </div>
@@ -162,6 +130,39 @@
 
                 </div>
                 <div></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Dette</label>
+            </div>
+        </div>
+        <div class="col-md-12 dette" id="detteField" style="display: none;">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" class="form-label">Montant Verser</label>
+                    <input type="number" class="form-control" id="montantdette" name="montantdette">
+                    <div class="text-danger">
+                        @error("montantdette")
+                        {{ $message }}
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Mode de Paiement</label>
+                    <select class="form-control" id="etat" name="etat">
+                        <option value="">-- Sélectionnez un mode ---</option>
+                        @foreach ($liste_type_dette as $item_type_dette)
+                            <option value="{{ $item_type_dette->id }}">{{ Str::upper($item_type_dette->intitule) }}</option>
+                        @endforeach
+                    </select>
+                    <div class="text-danger">
+                        @error("etat")
+                        {{ $message }}
+                        @enderror
+                    </div>
+                </div>
             </div>
         </div>
     </main>

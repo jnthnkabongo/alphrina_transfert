@@ -30,7 +30,7 @@ class saveDepot extends FormRequest
             'pays_destination' => 'required',
             'montant' => 'required',
             'motif' => 'required',
-            'etat' => '1'
+       
         ];
     }
 }
