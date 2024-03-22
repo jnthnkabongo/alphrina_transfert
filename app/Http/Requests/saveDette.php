@@ -11,7 +11,7 @@ class saveDette extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,9 +22,9 @@ class saveDette extends FormRequest
     public function rules(): array
     {
         return [
-            'id_typedette' => 'min:1',
-            'montantdette' => 'min:1',
-            'id_transaction' => 'min:1'
+            'id_typedette' => 'min:0',
+            'montantdette' => 'min:0',
+            'id_transaction' => 'min:0'
         ];
     }
 /**

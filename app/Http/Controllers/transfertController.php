@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use App\Models\Typedette;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\Input;
 
 class transfertController extends Controller
 {
@@ -30,17 +31,21 @@ class transfertController extends Controller
         $liste_pays = Pays::all();
         return view('administration.pages.transaction.creation', compact('generation_matricule','liste_type_dette','liste_pays'));
     }
+    public function soumission(Transaction $Depot){
+       
+    }
     // Soumission du formulaire e creation et creation d'un depot
     public function show(saveDepot $request, saveDette $requestDette)
     {
-        if ($requestDette->isEmpty()) {
+
+        if ($requestDette->input('montantdette') === null && $requestDette->input('etat')) {
             $validation = Transaction::create($request->validated());
+            dd($validation);
             return redirect()->route('index-transaction')->with('message', 'La creation reussi...');
         }else {
             $validation = Transaction::create($request->validated());
             $validationDette = Dette::create($requestDette->validated());
             return redirect()->route('index-transaction')->with('message', 'La creation reussi...');
-
         }
        /* try {
             $Depot->matricule = $request->matricule;
