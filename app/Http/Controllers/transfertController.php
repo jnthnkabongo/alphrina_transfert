@@ -37,7 +37,7 @@ class transfertController extends Controller
     // Soumission du formulaire e creation et creation d'un depot
     public function showing(Transaction $Depot, saveDepot $request,saveDette $requestDette)
     {
-        try {
+       /* try {
             $Depot->matricule = $request->matricule;
             $Depot->nom_emetteur = $request->nom_emetteur;
             $Depot->nom_recepteur = $request->nom_recepteur;
